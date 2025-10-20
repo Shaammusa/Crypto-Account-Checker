@@ -57,10 +57,12 @@
    ```
 
 2. **Proxy Setup** (Optional):
+
    - Add proxies to `input/proxies.txt` (one per line)
    - Format: `ip:port` or `user:pass@ip:port`
 
 3. **Running the script**:
+
    ```bash
    python main.py
    ```
