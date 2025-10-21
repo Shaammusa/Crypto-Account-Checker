@@ -420,15 +420,15 @@ def parse_account_line(line: str):
         if len(parts) >= 6:
             email = parts[-1].strip()
             phone = parts[-2].strip()
-            # Ensure phone starts with '+'
+            # Ensure phone starts with '+1' if '+' is missing
             if not phone.startswith("+"):
-                phone = f"+{phone}"
+                phone = f"+1{phone}"
             return email, phone
     elif ":" in line:  # email:phone format
         email, phone = line.split(":", 1)
-        # Ensure phone starts with '+'
+        # Ensure phone starts with '+1' if '+' is missing
         if not phone.startswith("+"):
-            phone = f"+{phone}"
+            phone = f"+1{phone}"
         return email.strip(), phone.strip()
     else:
         log.warning(f"Skipping malformed account line: {line.strip()}")

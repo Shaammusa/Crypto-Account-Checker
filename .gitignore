@@ -151,3 +151,7 @@ Desktop.ini
 # My dev files
 *.dev
 reqs/
+
+# Added by cargo
+
+/target
