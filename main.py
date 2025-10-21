@@ -5,13 +5,13 @@ import re
 import time
 import phonenumbers
 import pycountry
+import json
 
 from uuid import uuid4
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from functools import wraps
 from enum import Enum
 from logmagix import Logger, Home
-from faker import Faker
 from phonenumbers import geocoder
 
 with open('input/config.toml') as f:
@@ -20,7 +20,6 @@ with open('input/config.toml') as f:
 DEBUG = config['dev'].get('Debug', False)
 
 log = Logger()
-fake = Faker()
 
 def debug(func_or_message, *args, **kwargs) -> callable:
     if callable(func_or_message):
@@ -75,7 +74,6 @@ class Miscellaneous:
 
     @debug 
     def get_user_agent(self) -> str:
-        import json
 
         response = curl_cffi.get("https://raw.githubusercontent.com/ptraced/latest-useragents/refs/heads/main/useragents.json")
 
@@ -134,7 +132,8 @@ class AccountChecker:
         self.client_chat_id = None
         self.misc = misc
 
-        self.session = curl_cffi.Session(impersonate="chrome136")
+        # Initialize the session
+        self.session = curl_cffi.Session(impersonate="chrome136", http_version="v1")
 
         self.session.headers = {
             "Accept": "application/json, text/plain, */*",
@@ -156,7 +155,6 @@ class AccountChecker:
             "X-User-Type": "web"
         }
         self.session.proxies = proxy_dict
-
 
     @debug
     def get_authorization_token(self, id: str = None) -> str | None:
@@ -369,6 +367,54 @@ class AccountChecker:
 
             return Status.ERROR
 
+    # Increase timeout to handle slow server responses
+        self.session.timeout = 120  # Set timeout to 120 seconds
+
+        # Retry logic with exponential backoff
+        def retry_request(func, *args, retries=3, backoff=2, **kwargs):
+            for attempt in range(1, retries + 1):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    log.warning(f"Attempt {attempt} failed: {e}")
+                    if attempt == retries:
+                        raise
+                    time.sleep(backoff ** attempt)
+
+        # Update proxy handling to switch proxies on failure
+        def get_next_proxy():
+            try:
+                with open('input/proxies.txt') as f:
+                    proxies = [line.strip() for line in f if line.strip()]
+                for proxy in proxies:
+                    yield {
+                        'http': f'http://{proxy}',
+                        'https': f'http://{proxy}'
+                    }
+            except FileNotFoundError:
+                log.failure("Proxy file not found. Running in proxyless mode.")
+                yield None
+
+        self.proxy_generator = get_next_proxy()
+
+        def switch_proxy():
+            try:
+                self.session.proxies = next(self.proxy_generator)
+                log.debug(f"Switched to proxy: {self.session.proxies}")
+            except StopIteration:
+                log.failure("No more proxies available.")
+                self.session.proxies = None
+
+        # Call switch_proxy initially to set the first proxy
+        switch_proxy()
+
+        # Handle Cloudflare 502 Bad Gateway
+        def handle_response(response):
+            if response.status_code == 502:
+                log.warning("Received 502 Bad Gateway. Retrying...")
+                raise Exception("502 Bad Gateway")
+            return response
+
 def check_account(email: str, phone: str) -> bool:
     try:
         Misc = Miscellaneous()
@@ -402,9 +448,29 @@ def check_account(email: str, phone: str) -> bool:
 
         return True
     except Exception as e:
-        log.failure(f"Error during account creation process: {e}")
+        log.failure(f"Error during account checking process: {e}")
         return False
 
+
+def parse_account_line(line: str):
+    if "," in line:  # CSV-like format
+        parts = line.split(",")
+        if len(parts) >= 6:
+            email = parts[-1].strip()
+            phone = parts[-2].strip()
+            # Ensure phone starts with '+'
+            if not phone.startswith("+"):
+                phone = f"+{phone}"
+            return email, phone
+    elif ":" in line:  # email:phone format
+        email, phone = line.split(":", 1)
+        # Ensure phone starts with '+'
+        if not phone.startswith("+"):
+            phone = f"+{phone}"
+        return email.strip(), phone.strip()
+    else:
+        log.warning(f"Skipping malformed account line: {line.strip()}")
+        return None, None
 
 def main() -> None:
     try:
@@ -414,19 +480,14 @@ def main() -> None:
         Banner.display()
         thread_count = config['dev'].get('Threads', 1)
 
-        # Read accounts from input/accounts.txt (format: email:phone per line)
+        # Read accounts from input/accounts.txt (format: email:phone or CSV-like)
         accounts = []
         try:
             with open('input/accounts.txt', 'r', encoding='utf-8') as f:
                 for line in f:
-                    line = line.strip()
-                    if not line or line.startswith('#'):
-                        continue
-                    if ':' in line:
-                        email, phone = line.split(':', 1)
-                        accounts.append((email.strip(), phone.strip()))
-                    else:
-                        log.warning(f"Skipping malformed account line: {line}")
+                    email, phone = parse_account_line(line)
+                    if email and phone:
+                        accounts.append((email, phone))
         except FileNotFoundError:
             log.failure('input/accounts.txt not found')
             return

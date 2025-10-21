@@ -1,4 +1,4 @@
 [ dev ]
-Proxyless = true
+Proxyless = false
 Debug = false
 Threads = 1
